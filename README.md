@@ -30,4 +30,4 @@ Abre http://localhost:3000 con tu navegador para ver el resultado.
 
 Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE.md para más detalles.
 
-Proyecto Tiramisu © 2024 por William Talero. Todos los derechos reservados.
+Proyecto fiduciaria-banco-bogota-banca-app © 2024 por William Talero. Todos los derechos reservados.

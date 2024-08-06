@@ -10,12 +10,14 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
-import CreateAccountModal from "@/components/CreateAccountModal"
+import CreateAccountModal from "@/components/CreateAccountModal";
+import { useRouter } from "next/navigation";
 
-const Header = () => {
+const Header = ({ site }: { site: string }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [];
+  const router = useRouter();
 
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
@@ -25,7 +27,12 @@ const Header = () => {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit">Fiduciaria APP</p>
+          <p
+            className="font-bold text-inherit"
+            onClick={() => router.push("/")}
+          >
+            Fiduciaria APP
+          </p>
         </NavbarBrand>
       </NavbarContent>
 
@@ -36,7 +43,11 @@ const Header = () => {
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex"></NavbarItem>
         <NavbarItem>
-          <CreateAccountModal />
+          {site === "home" ? (
+            <CreateAccountModal />
+          ) : (
+            <Button onClick={() => router.push("/")}>Volver</Button>
+          )}
         </NavbarItem>
       </NavbarContent>
     </Navbar>

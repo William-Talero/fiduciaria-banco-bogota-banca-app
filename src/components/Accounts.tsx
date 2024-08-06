@@ -9,15 +9,17 @@ const Accounts = () => {
   console.log(accounts);
 
   return (
-    <div className="w-full h-full flex flex-wrap justify-center">
+    <div className="w-full h-full justify-center">
       {loading ? (
-        <>
-          <Skeleton className="w-[10rem] h-[8rem] rounded-lg m-1" />
-          <Skeleton className="w-[10rem] h-[8rem] rounded-lg m-1" />
-          <Skeleton className="w-[10rem] h-[8rem] rounded-lg m-1" />
-        </>
+        <div className="flex flex-wrap justify-center">
+          <Skeleton className="w-[20rem] h-[9rem] rounded-lg m-1" />
+          <Skeleton className="w-[20rem] h-[9rem] rounded-lg m-1" />
+          <Skeleton className="w-[20rem] h-[9rem] rounded-lg m-1" />
+        </div>
+      ) : accounts.length > 0 ? (
+        <CardElement accounts={accounts} />
       ) : (
-        <CardElement accounts={accounts}/>
+        <h1 className="text-md text-center mt-3">No accounts found</h1>
       )}
     </div>
   );

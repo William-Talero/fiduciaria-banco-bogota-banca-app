@@ -12,6 +12,7 @@ import {
   Link,
 } from "@nextui-org/react";
 import { CallApiCreateAccount } from "@/api/CallApi";
+import { revalidateTag } from "next/cache";
 
 const CreateAccountModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -27,6 +28,7 @@ const CreateAccountModal = () => {
     CallApiCreateAccount(body)
       .then((response) => {
         console.log(response);
+        revalidateTag("CallApiGetAllAccounts");
         onOpenChange();
       })
       .catch((error) => {

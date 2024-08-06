@@ -15,12 +15,15 @@ export const GetApiRequestToken = async (url: string) => {
   }
 };
 
-export const GetApiRequestWithoutToken = async (url: string) => {
+export const GetApiRequestWithoutToken = async (
+  url: string,
+  tag: string = ""
+) => {
   try {
     let config = {
       method: "GET",
       headers: {},
-      next: { revalidate: 3600 },
+      next: { revalidate: 3600, tags: [tag] },
     };
     return await fetch(url, config);
   } catch (error) {
@@ -83,7 +86,8 @@ export const PostApiRequest = async (
 
 export const PostApiRequestBodyWithoutToken = async (
   url: string,
-  body: string
+  body: string,
+  tag: string = ""
 ) => {
   try {
     let config = {
@@ -92,7 +96,7 @@ export const PostApiRequestBodyWithoutToken = async (
         "Content-Type": "application/json",
       },
       body: body,
-      next: { revalidate: 3600 },
+      next: { revalidate: 3600, tags: [tag] },
     };
     const peticion = await fetch(url, config);
     return peticion;

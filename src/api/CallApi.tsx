@@ -40,6 +40,9 @@ export const CallApiGetBalance = async (id: number) => {
 
 export const CallApiGetAllAccounts = async () => {
   let url = `${process.env.NEXT_PUBLIC_API_ROUTE}${Configuration.Accounts}`;
-  const data = await GetApiRequestWithoutToken(`${url}/GetAll`);
+  const data = await GetApiRequestWithoutToken(
+    `${url}/GetAll`,
+    "CallApiGetAllAccounts"
+  );
   return data ? await data.json() : [];
 };

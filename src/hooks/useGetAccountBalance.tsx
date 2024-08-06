@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
-import { CallApiGetAllAccounts } from "../api/CallApi";
+import { CallApiGetBalance } from "../api/CallApi";
 
-const useGetAccounts = () => {
-  const [accounts, setAccounts] = useState([]);
+const useGetAccountBalance = (id: number, revalidate: boolean) => {
+  const [accountBalance, setAccountBalance] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const data = await CallApiGetAllAccounts();
+        const data = await CallApiGetBalance(id);
         if (data.detail) {
           throw new Error(data.detail);
         }
         console.log(data);
-        setAccounts(data);
+        setAccountBalance(data);
         setLoading(false);
       } catch (error) {
         setError(true);
@@ -22,9 +22,9 @@ const useGetAccounts = () => {
       }
     };
     fetchAccounts();
-  }, []);
+  }, [revalidate]);
 
-  return { accounts, loading, error };
+  return { accountBalance, loading, error };
 };
 
-export default useGetAccounts;
+export default useGetAccountBalance;
